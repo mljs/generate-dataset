@@ -25,7 +25,10 @@
     "learning",
     "data",
     "mining",
-    "datamining"
+    "datamining",
+    "generate",
+    "dataset",
+    "synthetic"
   ],
   "author": "Jefferson Hernández <jeffersonh44@gmail.com>",
   "license": "MIT",
