@@ -55,12 +55,12 @@ export function makeCircles(options) {
         y[i] = 1;
     }
 
-    if (options.noise) {
-        X.add(Matrix.rand(options.samples, 2, () => random.randNormal(0, options.noise)));
-    }
-
     if (options.shuffle) {
         shuffle(random, X, y);
+    }
+
+    if (options.noise) {
+        X.add(Matrix.rand(options.samples, 2, () => random.randNormal(0, options.noise)));
     }
 
     return {
