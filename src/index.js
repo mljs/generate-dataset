@@ -1,2 +1,2 @@
-export {makeCircles} from './makeCircles';
+export {generateDataset2D} from './generateDataset2D';
 

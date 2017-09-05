@@ -1,15 +1,16 @@
-import {makeCircles} from '../makeCircles';
 import {toBeDeepCloseTo} from 'jest-matcher-deep-close-to';
+import {generateDataset2D} from '../generateDataset2D';
 expect.extend({toBeDeepCloseTo});
 
-describe('main test', () => {
+describe('circles test', () => {
     var options = {
-        samples: 10
+        samples: 10,
+        kind: 'circles'
     };
 
     test('make circles', () => {
         options.shuffle = false;
-        var {X, y} = makeCircles(options);
+        var {X, y} = generateDataset2D(options);
 
         var expectedX = [[1, 0],
             [0.30901699437494745, 0.9510565162951535],
@@ -30,7 +31,7 @@ describe('main test', () => {
     test('circles with shuffle', () => {
         options.shuffle = true;
         options.seed = 42;
-        var {X, y} = makeCircles(options);
+        var {X, y} = generateDataset2D(options);
 
         var expectedX = [[0.15450849718747373, 0.47552825814757677],
             [-0.8090169943749473, 0.5877852522924732],
@@ -52,7 +53,7 @@ describe('main test', () => {
         options.shuffle = true;
         options.seed = 42;
         options.noise = 0.001;
-        var {X, y} = makeCircles(options);
+        var {X, y} = generateDataset2D(options);
 
         var expectedX = [[0.15450849718747373, 0.47552825814757677],
             [-0.8090169943749473, 0.5877852522924732],
