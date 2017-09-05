@@ -1,6 +1,7 @@
 import LibRandom from 'lib-random';
 import {shuffle} from './utils';
 import {makeCircles} from './makeCircles';
+import {makeMoons} from './makeMoons';
 import Matrix from 'ml-matrix';
 
 const defaultOptions = {
@@ -12,6 +13,7 @@ const defaultOptions = {
 
 const generators = {
     circles: makeCircles,
+    moons: makeMoons
 };
 
 /**

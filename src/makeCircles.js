@@ -9,7 +9,7 @@ const defaultOptions = {
 /**
  * @param {number} samples
  * @param {object} options
- * @param {number} [options.samplesOutside=0.5] - Percentage of samples that belongs to the outside circle, the inside percentage is (1 - samplesOutside).
+ * @param {number} [options.classSamples=0.5] - Percentage of samples that belongs to one class (outside circle).
  * @param {number} [options.scaleFactor=0.5] - Scale factor between inner and outer circle.
  * @return {object} - Object that contains X(dataset) and y(predictions)
  */
