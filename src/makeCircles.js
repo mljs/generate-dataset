@@ -56,7 +56,9 @@ export function makeCircles(options) {
     }
 
     if (options.shuffle) {
-        shuffle(random, X, y);
+        var shuffled = shuffle(random, X, y);
+        X = shuffled.X;
+        y = shuffled.y;
     }
 
     if (options.noise) {
