@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Generate synthetic datasets for testing",
   "main": "./lib/index.js",
+  "module": "./src/index.js",
   "files": [
-    "runkit.js",
     "src",
     "lib"
   ],

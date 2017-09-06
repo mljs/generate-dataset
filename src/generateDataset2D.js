@@ -7,7 +7,6 @@ import Matrix from 'ml-matrix';
 const defaultOptions = {
     samples: 10,
     shuffle: true,
-    samplesClass: 0.5,
     generatorOptions: {}
 };
 
@@ -18,7 +17,7 @@ const generators = {
 
 /**
  * @param {object} options
- * @param {string} [options.kind] - Generator kind
+ * @param {string} [options.kind] - Generator kind ('moons' and 'circles' allowed)-
  * @param {number} [options.samples=100] - Number of samples to generate
  * @param {boolean} [options.shuffle=true] - Whether to shuffle the samples.
  * @param {number} [options.seed=undefined] - Seed for the random noise generator.

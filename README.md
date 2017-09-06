@@ -6,7 +6,7 @@
   [![David deps][david-image]][david-url]
   [![npm download][download-image]][download-url]
 
-Generate synthetic datasets for testing
+Generate synthetic datasets for testing, taken from sklearn [implementation](https://github.com/scikit-learn/scikit-learn/blob/ef5cb84a/sklearn/datasets/samples_generator.py#L572)
 
 ## Installation
 
@@ -16,11 +16,42 @@ Generate synthetic datasets for testing
 
 ## Example
 
+### Make moons
 ```js
 const generateDataset = require('ml-generate-dataset');
+
+// generate two moons, each one belongs to one class
+var options = {
+    kind: 'moons'
+    samples: 50,
+    shuffle: true,
+    seed: 42, // to reproduce the same results
+    noise: 0.001 // apply gaussian noise to your data
+    generatorOptions: {
+        classSamples: 0.7 // percentage of dataset that belongs to one class
+    }
+}
+var {X, y} = generateDataset(options) // generate a moon dataset
 ```
 
-Or test it in [Runkit](https://runkit.com/npm/ml-generate-dataset)
+### Make circles
+```js
+const generateDataset = require('ml-generate-dataset');
+
+// generate two circles, one inside of other
+var options = {
+    kind: 'circles'
+    samples: 50,
+    shuffle: true,
+    seed: 42, // to reproduce the same results
+    noise: 0.001 // apply gaussian noise to your data
+    generatorOptions: {
+        classSamples: 0.7 // percentage of dataset that belongs to one class
+        scaleFactor: 0.5 // scale factor between inside and outside circle
+    }
+}
+var {X, y} = generateDataset(options) // generate a circles dataset
+```
 
 ## License
 
