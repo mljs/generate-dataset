@@ -23,26 +23,25 @@ export function makeMoons(samples, options) {
     var dataOuside = linspace(0, Math.PI, outSamples);
     var dataInside = linspace(0, Math.PI, inSamples);
 
-    var X = new Matrix([dataOuside, dataOuside]).transpose();
-    var XInside = new Matrix([dataInside, dataInside]).transpose();
+    var dataset = new Matrix([dataOuside, dataOuside]).transpose();
+    var datasetInside = new Matrix([dataInside, dataInside]).transpose();
 
-    X.apply(function (i, j) {
+    dataset.apply(function (i, j) {
         this[i][j] = j ? Math.sin(this[i][j]) : Math.cos(this[i][j]);
     });
 
-    // TODO: to improve
-    XInside.apply(function (i, j) {
+    datasetInside.apply(function (i, j) {
         this[i][j] = j ? 1 - Math.sin(this[i][j]) - .5 : 1 - Math.cos(this[i][j]);
     });
 
-    for (var i = 0; i < XInside.rows; ++i) {
-        X.addRow(XInside.getRow(i));
+    for (var i = 0; i < datasetInside.rows; ++i) {
+        dataset.addRow(datasetInside.getRow(i));
     }
 
-    var y = new Array(samples);
-    for (i = 0; i < X.rows; ++i) {
-        y[i] = i < outSamples ? 0 : 1;
+    var labels = new Array(samples);
+    for (i = 0; i < dataset.rows; ++i) {
+        labels[i] = i < outSamples ? 0 : 1;
     }
 
-    return {X, y};
+    return {dataset, labels};
 }

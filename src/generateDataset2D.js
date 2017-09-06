@@ -30,17 +30,17 @@ export function generateDataset2D(options) {
 
     var random = new LibRandom(options.seed);
 
-    var {X, y} = generators[options.kind](options.samples, options.generatorOptions);
+    var {dataset, labels} = generators[options.kind](options.samples, options.generatorOptions);
 
     if (options.shuffle) {
-        var shuffled = shuffle(random, X, y);
-        X = shuffled.X;
-        y = shuffled.y;
+        var shuffled = shuffle(random, dataset, labels);
+        dataset = shuffled.X;
+        labels = shuffled.y;
     }
 
     if (options.noise) {
-        X.add(Matrix.rand(options.samples, 2, () => random.randNormal(0, options.noise)));
+        dataset.add(Matrix.rand(options.samples, 2, () => random.randNormal(0, options.noise)));
     }
 
-    return {X, y};
+    return {dataset, labels};
 }

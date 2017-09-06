@@ -31,7 +31,7 @@ var options = {
         classSamples: 0.7 // percentage of dataset that belongs to one class
     }
 }
-var {X, y} = generateDataset(options) // generate a moon dataset
+var {dataset, labels} = generateDataset(options) // generate a moon dataset
 ```
 
 ### Make circles
@@ -50,7 +50,7 @@ var options = {
         scaleFactor: 0.5 // scale factor between inside and outside circle
     }
 }
-var {X, y} = generateDataset(options) // generate a circles dataset
+var {dataset, labels} = generateDataset(options) // generate a circles dataset
 ```
 
 ## License

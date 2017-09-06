@@ -23,26 +23,26 @@ export function makeCircles(samples, options) {
     var dataOuside = linspace(0, 2 * Math.PI, outSamples + 1).slice(0, -1);
     var dataInside = linspace(0, 2 * Math.PI, inSamples + 1).slice(0, -1);
 
-    var X = new Matrix([dataOuside, dataOuside]).transpose();
-    var XInside = new Matrix([dataInside, dataInside]).transpose();
+    var dataset = new Matrix([dataOuside, dataOuside]).transpose();
+    var datasetInside = new Matrix([dataInside, dataInside]).transpose();
 
-    for (var i = 0; i < XInside.rows; ++i) {
-        X.addRow(XInside.getRow(i));
+    for (var i = 0; i < datasetInside.rows; ++i) {
+        dataset.addRow(datasetInside.getRow(i));
     }
 
-    var y = new Array(X.rows);
+    var labels = new Array(dataset.rows);
 
-    for (i = 0; i < X.rows; ++i) {
-        X.set(i, 0, Math.cos(X.get(i, 0)));
-        X.set(i, 1, Math.sin(X.get(i, 1)));
-        y[i] = 0;
+    for (i = 0; i < dataset.rows; ++i) {
+        dataset.set(i, 0, Math.cos(dataset.get(i, 0)));
+        dataset.set(i, 1, Math.sin(dataset.get(i, 1)));
+        labels[i] = 0;
     }
 
-    for (i = outSamples; i < X.rows; ++i) {
-        X.set(i, 0, X.get(i, 0) * options.scaleFactor);
-        X.set(i, 1, X.get(i, 1) * options.scaleFactor);
-        y[i] = 1;
+    for (i = outSamples; i < dataset.rows; ++i) {
+        dataset.set(i, 0, dataset.get(i, 0) * options.scaleFactor);
+        dataset.set(i, 1, dataset.get(i, 1) * options.scaleFactor);
+        labels[i] = 1;
     }
 
-    return {X, y};
+    return {dataset, labels};
 }

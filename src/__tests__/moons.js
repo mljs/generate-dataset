@@ -11,8 +11,8 @@ describe('make moons', () => {
     test('main test', () => {
         options.shuffle = false;
 
-        var {X, y} = generateDataset2D(options);
-        var expectedX = [
+        var {dataset, labels} = generateDataset2D(options);
+        var expectedDataset = [
             [1, 0],
             [0.7071067811865476, 0.7071067811865475],
             [6.123233995736766e-17, 1],
@@ -24,10 +24,10 @@ describe('make moons', () => {
             [1.7071067811865475, -0.20710678118654757],
             [2, 0.4999999999999999]
         ];
-        var expectedY = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1];
+        var expectedLabels = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1];
 
-        expect(X).toBeDeepCloseTo(expectedX, 2);
-        expect(y).toEqual(expectedY);
+        expect(dataset).toBeDeepCloseTo(expectedDataset, 2);
+        expect(labels).toEqual(expectedLabels);
     });
 
     test('moons with noise', () => {
@@ -39,8 +39,8 @@ describe('make moons', () => {
             classSamples: 0.3
         };
 
-        var {X, y} = generateDataset2D(options);
-        var expectedX = [
+        var {dataset, labels} = generateDataset2D(options);
+        var expectedDataset = [
             [0.9999999999999999, -0.5],
             [-1, 1.2246467991473532e-16],
             [0.4999999999999999, -0.3660254037844386],
@@ -52,9 +52,9 @@ describe('make moons', () => {
             [0.1339745962155613, 0],
             [6.123233995736766e-17, 1]
         ];
-        var expectedY = [1, 0, 1, 0, 1, 1, 1, 1, 1, 0];
+        var expectedLabels = [1, 0, 1, 0, 1, 1, 1, 1, 1, 0];
 
-        expect(X).toBeDeepCloseTo(expectedX, 1);
-        expect(y).toEqual(expectedY);
+        expect(dataset).toBeDeepCloseTo(expectedDataset, 1);
+        expect(labels).toEqual(expectedLabels);
     });
 });
