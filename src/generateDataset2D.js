@@ -1,14 +1,8 @@
 import LibRandom from 'lib-random';
-import {shuffle} from './utils';
+import {shuffle as getShuffle} from './utils';
 import {makeCircles} from './makeCircles';
 import {makeMoons} from './makeMoons';
 import Matrix from 'ml-matrix';
-
-const defaultOptions = {
-    samples: 10,
-    shuffle: true,
-    generatorOptions: {}
-};
 
 const generators = {
     circles: makeCircles,
@@ -22,24 +16,31 @@ const generators = {
  * @param {boolean} [options.shuffle=true] - Whether to shuffle the samples.
  * @param {number} [options.seed=undefined] - Seed for the random noise generator.
  * @param {number} [options.noise=undefined] - Standard deviation of gaussian noise added to the dataset
- * @param {object} [options.generatorOptions] - Options for generator.
+ * @param {object} [options.generatorOptions={}] - Options for generator.
  * @return {object} - Object that contains X(dataset) and y(predictions)
  */
 export function generateDataset2D(options) {
-    options = Object.assign({}, defaultOptions, options);
+    var {
+        kind,
+        seed,
+        samples,
+        noise,
+        generatorOptions = {},
+        shuffle = true,
+    } = options;
 
-    var random = new LibRandom(options.seed);
+    var random = new LibRandom(seed);
 
-    var {dataset, labels} = generators[options.kind](options.samples, options.generatorOptions);
+    var {dataset, labels} = generators[kind](samples, generatorOptions);
 
-    if (options.shuffle) {
-        var shuffled = shuffle(random, dataset, labels);
+    if (shuffle) {
+        var shuffled = getShuffle(random, dataset, labels);
         dataset = shuffled.X;
         labels = shuffled.y;
     }
 
-    if (options.noise) {
-        dataset.add(Matrix.rand(options.samples, 2, () => random.randNormal(0, options.noise)));
+    if (noise) {
+        dataset.add(Matrix.rand(samples, 2, () => random.randNormal(0, noise)));
     }
 
     return {dataset, labels};

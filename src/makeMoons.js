@@ -1,10 +1,6 @@
 import Matrix from 'ml-matrix';
 import linspace from 'compute-linspace';
 
-const defaultOptions = {
-    classSamples: 0.5
-};
-
 /**
  *
  * @param {number} samples - amount of samples to generate
@@ -13,10 +9,12 @@ const defaultOptions = {
  * @return {object} - Object that contains X(dataset) and y(predictions).
  */
 
-export function makeMoons(samples, options) {
-    options = Object.assign({}, defaultOptions, options);
+export function makeMoons(samples, options = {}) {
+    var {
+        classSamples = 0.5
+    } = options;
 
-    var outSamples = Math.floor(samples * options.classSamples);
+    var outSamples = Math.floor(samples * classSamples);
     var inSamples = samples - outSamples;
 
     // to avoid that the first point === last point

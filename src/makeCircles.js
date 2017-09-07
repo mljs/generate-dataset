@@ -1,11 +1,6 @@
 import Matrix from 'ml-matrix';
 import linspace from 'compute-linspace';
 
-const defaultOptions = {
-    samplesOutside: 0.5,
-    scaleFactor: 0.5
-};
-
 /**
  * @param {number} samples
  * @param {object} options
@@ -13,10 +8,13 @@ const defaultOptions = {
  * @param {number} [options.scaleFactor=0.5] - Scale factor between inner and outer circle.
  * @return {object} - Object that contains X(dataset) and y(predictions)
  */
-export function makeCircles(samples, options) {
-    options = Object.assign({}, defaultOptions, options);
+export function makeCircles(samples, options = {}) {
+    var {
+        classSamples = 0.5,
+        scaleFactor = 0.5
+    } = options;
 
-    var outSamples = Math.floor(samples * options.samplesOutside);
+    var outSamples = Math.floor(samples * classSamples);
     var inSamples = samples - outSamples;
 
     // to avoid that the first point === last point
@@ -39,8 +37,8 @@ export function makeCircles(samples, options) {
     }
 
     for (i = outSamples; i < dataset.rows; ++i) {
-        dataset.set(i, 0, dataset.get(i, 0) * options.scaleFactor);
-        dataset.set(i, 1, dataset.get(i, 1) * options.scaleFactor);
+        dataset.set(i, 0, dataset.get(i, 0) * scaleFactor);
+        dataset.set(i, 1, dataset.get(i, 1) * scaleFactor);
         labels[i] = 1;
     }
 
