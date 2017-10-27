@@ -3,7 +3,6 @@ var normalRandGenerator = require('distributions-normal-random');
 
 function generator(pureElements, options = {}) {
     _checkParameters(pureElements, options);
-    [pureElements, options] = _adjustParameters(pureElements, options);
     var compositionMatrix = _createCompMatrix(options);
     var output = {dataset: compositionMatrix.mmul(pureElements)};
     if (options.keepCompositionMatrix) output.compositionMatrix = compositionMatrix;
@@ -46,7 +45,7 @@ function _createCompMatrix(options) {
     var {
         classes,
         nbPureElements,
-        seed
+        seed = 2234235
     } = options;
     normalRandGenerator.seed = seed;
     let matrixComposition = [];
@@ -63,4 +62,19 @@ function _createCompMatrix(options) {
     }
     return new Matrix(matrixComposition);
 }
-module.exports["generate-dataset"] = generator;
+
+function _checkParameters(pureElements, options) {
+    let {
+        classes
+    } = options;
+    let expressions = {
+        error1: 'pureElements should be an Array',
+        error2: 'classes should be an Array',
+        error3: 'pureElements array should has more than one element'
+    };
+    if (!Array.isArray(pureElements)) throw expressions.error1;
+    if (pureElements.length < 2) throw expressions.error3;
+    if (!Array.isArray(classes)) throw expressions.error2;
+}
+
+module.exports = generator;
