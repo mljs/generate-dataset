@@ -4,8 +4,42 @@ var normalRandGenerator = require('distributions-normal-random');
 function generator(pureElements, options = {}) {
     _checkParameters(pureElements, options);
     [pureElements, options] = _adjustParameters(pureElements, options);
-    var matrixComposition = _createCompMatrix(options);
-    return matrixComposition.mmul(pureElements);
+    var compositionMatrix = _createCompMatrix(options);
+    var output = {dataset: compositionMatrix.mmul(pureElements)};
+    if (options.keepCompositionMatrix) output.compositionMatrix = compositionMatrix;
+    if (options.keepDataClass) output.dataClass = _getDataClass(options);
+    return output;
+}
+
+function _getDataClass(options) {
+    let {
+        classes,
+        dummyMatrix,
+    } = options;
+
+    var dataClass;
+    let counter = 0;
+    let nbClasses = classes.length;
+    let nbSamples = classes.reduce((acc, clase) => clase.nbSample + acc, 0);
+
+    if (dummyMatrix) {
+        dataClass = Matrix.zeros(nbSamples, nbClasses);
+        for (let i = 0; i < nbClasses; i++) {
+            let nbSamplesPerClass = classes[i].nbSample;
+            for (let j = 0; j < nbSamplesPerClass; j++) {
+                dataClass[counter++][i] = 1;
+            }
+        }
+    } else {
+        dataClass = new Array(nbSamples);
+        for (let i = 0; i < nbClasses; i++) {
+            let nbSamplesPerClass = classes[i].nbSample;
+            for (let j = 0; j < nbSamplesPerClass; j++) {
+                dataClass[counter++] = i;
+            }
+        }
+    }
+    return dataClass;
 }
 
 function _createCompMatrix(options) {
@@ -30,4 +64,3 @@ function _createCompMatrix(options) {
     return new Matrix(matrixComposition);
 }
 module.exports["generate-dataset"] = generator;
-
