@@ -34,7 +34,7 @@ function _getDataClass(options) {
         for (let i = 0; i < nbClasses; i++) {
             let nbSamplesPerClass = classes[i].nbSample;
             for (let j = 0; j < nbSamplesPerClass; j++) {
-                dataClass[counter++] = i;
+                dataClass[counter++] = [i];
             }
         }
     }
