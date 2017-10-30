@@ -1,4 +1,4 @@
-var generateDataset = require('../index');
+var generateDataset = require('../src/index');
 
 /*
  * this options will be used to create the dataSet, thus permites to create several classes where markers will be
