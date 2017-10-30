@@ -8,29 +8,127 @@
 .
 
 ## Installation
-
-`$ npm install --save dataSetGenerator`
-
-## Usage
-
-```js
-import library from 'dataSetGenerator';
-
-const result = library(args);
-// result is ...
+```bash
+npm install --save generate-dataset
 ```
 
-## [API Documentation](https://cheminfo-js.github.io/dataSetGenerator/)
+## Example
+```js
+var generateDataset = require('generate-dataset');
+/*
+ * this options will be used to create the dataSet, thus permites to create several classes where markers will be
+ * the elements with differents distributions between the classes, pay attention to the element with index 1, it has
+ * a distribution with means 9.4 and 10.3 for the first and second classes respectivelly
+ */
+var options = {
+    keepDataClass: true,
+    keepCompositionMatrix: true,
+    dummyMatrix: true,
+    seed: 22,
+    classes: [
+        {
+            nbSample: 500,
+            elements: [
+                {
+                    index: 0,
+                    distribution: {
+                        name: 'normal',
+                        parameters: {
+                            mean: 9.4,
+                            standardDesviation: 0.1
+                        }
+                    }
+                },
+                {
+                    index: 1,
+                    distribution: {
+                        name: 'normal',
+                        parameters: {
+                            mean: 9.4,
+                            standardDesviation: 0.1
+                        }
+                    }
+                },
+                {
+                    index: 2,
+                    distribution: {
+                        name: 'normal',
+                        parameters: {
+                            mean: 9.4,
+                            standardDesviation: 0.1
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            nbSample: 500,
+            elements: [
+                {
+                    index: 0,
+                    distribution: {
+                        name: 'normal',
+                        parameters: {
+                            mean: 9.4,
+                            standardDesviation: 0.1
+                        }
+                    }
+                },
+                {
+                    index: 1,
+                    distribution: {
+                        name: 'normal',
+                        parameters: {
+                            mean: 10.3,
+                            standardDesviation: 0.15
+                        }
+                    }
+                },
+                {
+                    index: 2,
+                    distribution: {
+                        name: 'normal',
+                        parameters: {
+                            mean: 9.4,
+                            standardDesviation: 0.1
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+};
+// the pureElements matrix could be whatever you want like NMR or IR spectra.
+var pureElements = [
+    [0, 0, 0, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0]
+];
+/* the rows of pureElements matrix will be linear combined like:
+ * var pureElements = [
+ *  element A,
+ *  element B,
+ *  element C,
+ *      .
+ *      .
+ *      .
+ *  ];
+ *  so each element of dataset is  AA = aA + bB + cC + ...
+ *  and the matrix composition contain those percentages
+ */
+var dataset = generateDataset(pureElements, options);
+// now you have an object with the dataset, matrix composition and dataClass matrix to do a statistical procedure and debug
+```
+## [API Documentation](https://mljs.github.io/generate-dataset/)
 
 ## License
-
   [MIT](./LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/dataSetGenerator.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/dataSetGenerator
-[travis-image]: https://img.shields.io/travis/cheminfo-js/dataSetGenerator/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/cheminfo-js/dataSetGenerator
-[codecov-image]: https://img.shields.io/codecov/c/github/cheminfo-js/dataSetGenerator.svg?style=flat-square
-[codecov-url]: https://codecov.io/gh/cheminfo-js/dataSetGenerator
-[download-image]: https://img.shields.io/npm/dm/dataSetGenerator.svg?style=flat-square
-[download-url]: https://www.npmjs.com/package/dataSetGenerator
+[npm-image]: https://img.shields.io/npm/v/generate-dataset.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/generate-dataset
+[travis-image]: https://img.shields.io/travis/mljs/generate-dataset/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/mljs/generate-dataset
+[codecov-image]: https://img.shields.io/codecov/c/github/mljs/generate-dataset.svg?style=flat-square
+[codecov-url]: https://codecov.io/gh/mljs/generate-dataset
+[download-image]: https://img.shields.io/npm/dm/generate-dataset.svg?style=flat-square
+[download-url]: https://www.npmjs.com/package/generate-dataset
