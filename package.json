@@ -17,15 +17,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cheminfo-js/generate-dataset.git"
+    "url": "git+https://github.com/mljs/generate-dataset.git"
   },
   "keywords": [],
   "author": "Jose Alejandro Bolanos Arroyave (jobo322)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cheminfo-js/generate-dataset/issues"
+    "url": "https://github.com/mljs/generate-dataset/issues"
   },
-  "homepage": "https://github.com/cheminfo-js/generate-dataset#readme",
+  "homepage": "https://github.com/mljs/generate-dataset#readme",
   "jest": {
     "testEnvironment": "node"
   },
