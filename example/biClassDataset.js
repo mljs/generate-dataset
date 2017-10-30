@@ -1,6 +1,4 @@
-'use strict';
 var generateDataset = require('../index');
-var {Matrix} = require('ml-matrix');
 
 /*
  * this options will be used to create the dataSet, thus permites to create several classes where markers will be
@@ -22,7 +20,7 @@ var options = {
                         name: 'normal',
                         parameters: {
                             mean: 9.4,
-                            standardDesviation: 0.1
+                            standardDeviation: 0.1
                         }
                     }
                 },
@@ -32,7 +30,7 @@ var options = {
                         name: 'normal',
                         parameters: {
                             mean: 9.4,
-                            standardDesviation: 0.1
+                            standardDeviation: 0.1
                         }
                     }
                 },
@@ -42,7 +40,7 @@ var options = {
                         name: 'normal',
                         parameters: {
                             mean: 9.4,
-                            standardDesviation: 0.1
+                            standardDeviation: 0.1
                         }
                     }
                 }
@@ -57,7 +55,7 @@ var options = {
                         name: 'normal',
                         parameters: {
                             mean: 9.4,
-                            standardDesviation: 0.1
+                            standardDeviation: 0.1
                         }
                     }
                 },
@@ -67,7 +65,7 @@ var options = {
                         name: 'normal',
                         parameters: {
                             mean: 10.3,
-                            standardDesviation: 0.15
+                            standardDeviation: 0.15
                         }
                     }
                 },
@@ -77,7 +75,7 @@ var options = {
                         name: 'normal',
                         parameters: {
                             mean: 9.4,
-                            standardDesviation: 0.1
+                            standardDeviation: 0.1
                         }
                     }
                 }

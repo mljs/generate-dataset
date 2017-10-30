@@ -14,7 +14,7 @@ var options = {
                         name: 'normal',
                         parameters: {
                             mean: 9.4,
-                            standardDesviation: 0.1
+                            standardDeviation: 0.1
                         }
                     }
                 },
@@ -24,7 +24,7 @@ var options = {
                         name: 'normal',
                         parameters: {
                             mean: 9.4,
-                            standardDesviation: 0.1
+                            standardDeviation: 0.1
                         }
                     }
                 },
@@ -34,7 +34,7 @@ var options = {
                         name: 'normal',
                         parameters: {
                             mean: 9.4,
-                            standardDesviation: 0.1
+                            standardDeviation: 0.1
                         }
                     }
                 }
@@ -49,7 +49,7 @@ var options = {
                         name: 'normal',
                         parameters: {
                             mean: 9.4,
-                            standardDesviation: 0.1
+                            standardDeviation: 0.1
                         }
                     }
                 },
@@ -59,7 +59,7 @@ var options = {
                         name: 'normal',
                         parameters: {
                             mean: 10.3,
-                            standardDesviation: 0.15
+                            standardDeviation: 0.15
                         }
                     }
                 },
@@ -69,7 +69,7 @@ var options = {
                         name: 'normal',
                         parameters: {
                             mean: 9.4,
-                            standardDesviation: 0.1
+                            standardDeviation: 0.1
                         }
                     }
                 }
