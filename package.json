@@ -30,7 +30,12 @@
     "testEnvironment": "node"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^21.0.2",
+    "babel-plugin-remove-comments": "^2.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-preset-babili": "^0.1.4",
+    "cheminfo-tools": "^1.19.4",
     "codecov": "^2.3.0",
     "eslint": "^4.6.1",
     "eslint-config-cheminfo": "^1.8.0",
@@ -41,6 +46,7 @@
   },
   "dependencies": {
     "distributions-normal-random": "0.0.1",
+    "fs": "0.0.1-security",
     "ml-matrix": "^5.0.1"
   }
 }

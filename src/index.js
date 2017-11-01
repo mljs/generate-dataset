@@ -1,5 +1,6 @@
 
 var {Matrix} = require('ml-matrix');
+var FS = require('fs');
 var normalRandGenerator = require('distributions-normal-random');
 
 /**
@@ -16,16 +17,17 @@ var normalRandGenerator = require('distributions-normal-random');
  * @return {object} - object with one or three properties depending on the options
  * {dataset: Array<Array<number>>, compositionMatrix: Array<Array<number>>, dataClass: Array<Array<number>>}.
  */
-function generator(pureElements, options = {}) {
+function generate(pureElements, options = {}) {
     _checkParameters(pureElements, options);
-    var compositionMatrix = _createCompMatrix(options);
+    var compositionMatrix = createCompMatrix(options);
     var output = {dataset: compositionMatrix.mmul(pureElements)};
     if (options.keepCompositionMatrix) output.compositionMatrix = compositionMatrix;
-    if (options.keepDataClass) output.dataClass = _getDataClass(options);
+    if (options.keepDataClass) output.dataClass = getDataClass(options);
+    if (options.exportAsCsv) writeFiles(output, options.path);
     return output;
 }
 
-function _getDataClass(options) {
+function getDataClass(options) {
     let {
         classes,
         dummyMatrix,
@@ -56,7 +58,7 @@ function _getDataClass(options) {
     return dataClass;
 }
 
-function _createCompMatrix(options) {
+function createCompMatrix(options) {
     var {
         classes,
         nbPureElements,
@@ -88,4 +90,15 @@ function _checkParameters(pureElements, options) {
     if (!Array.isArray(classes)) throw new RangeError('classes should be an Array');
 }
 
-module.exports = generator;
+function writeFiles(output, path = __dirname + '/..') {
+    for (let i in output) {
+        let matrix = output[i];
+        let tmpOutput = '';
+        for (let j of matrix) {
+            tmpOutput += j.join(', ');
+            tmpOutput += '\n';
+        }
+        FS.writeFileSync(path + '/' + i + '.csv', tmpOutput);
+    }
+}
+module.exports = generate;
