@@ -46,7 +46,6 @@
   },
   "dependencies": {
     "distributions-normal-random": "0.0.1",
-    "fs": "0.0.1-security",
     "ml-matrix": "^5.0.1"
   }
 }

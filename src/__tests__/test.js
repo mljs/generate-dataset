@@ -1,5 +1,4 @@
 var generate = require('../index');
-// var {Matrix} = require('ml-matrix');
 var options = {
     keepDataClass: true,
     keepCompositionMatrix: false,
