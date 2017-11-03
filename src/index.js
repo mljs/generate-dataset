@@ -1,6 +1,6 @@
 
 var {Matrix} = require('ml-matrix');
-var FS = require('fs');
+var fs = require('fs');
 var normalRandGenerator = require('distributions-normal-random');
 
 /**
@@ -23,7 +23,7 @@ function generate(pureElements, options = {}) {
     var output = {dataset: compositionMatrix.mmul(pureElements)};
     if (options.keepCompositionMatrix) output.compositionMatrix = compositionMatrix;
     if (options.keepDataClass) output.dataClass = getDataClass(options);
-    if (options.exportAsCsv) writeFiles(output, options.path);
+    if (options.exportAsCsv) writeFiles(output, options.pathToWrite);
     return output;
 }
 
@@ -88,9 +88,10 @@ function _checkParameters(pureElements, options) {
     if (!Array.isArray(pureElements)) throw new RangeError('pureElements should be an Array');
     if (pureElements.length < 2) throw new RangeError('pureElements array should has more than one element');
     if (!Array.isArray(classes)) throw new RangeError('classes should be an Array');
+    options.nbPureElements = pureElements.length;
 }
 
-function writeFiles(output, path = __dirname + '/..') {
+function writeFiles(output, pathToWrite = __dirname + '/..') {
     for (let i in output) {
         let matrix = output[i];
         let tmpOutput = '';
@@ -98,7 +99,7 @@ function writeFiles(output, path = __dirname + '/..') {
             tmpOutput += j.join(', ');
             tmpOutput += '\n';
         }
-        FS.writeFileSync(path + '/' + i + '.csv', tmpOutput);
+        fs.writeFileSync(pathToWrite + '/' + i + '.csv', tmpOutput);
     }
 }
 module.exports = generate;
