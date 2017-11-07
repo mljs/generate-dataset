@@ -1,6 +1,5 @@
 var generate = require('../index');
 var options = {
-    dataClass: true,
     seed: 22,
     classes: [
         {
@@ -90,18 +89,10 @@ describe('dataset generated from a small matrix of pureElements', () => {
         expect(sum1 / class1.length).toBeCloseTo(9.4, 1);
         expect(sum2 / class2.length).toBeCloseTo(10.3, 1);
     });
-    it('the dataClass matrix should be a vector matrix (nbSamples, 1)', () => {
-        let dataClass = result.dataClass;
-        expect(Array.isArray(dataClass[0])).toEqual(true);
-        expect(dataClass[0]).toEqual([0]);
-        expect(dataClass[500]).toEqual([1]);
-    });
-    it('the dataClass matrix should be a dummy matrix', () => {
-        options.binaryDataClassMatrix = true;
-        let classes = options.classes; //eslint-disable-line no-unused-vars
-        classes = classes.map((a) => a.nbSample = 10);
-        let result = generate(pureElements, options);
-        expect(result.dataClass[0]).toEqual([1, 0]);
-        expect(result.dataClass[10]).toEqual([0, 1]);
+    it('the classMatrix should be a binary matrix and classVector contain the same information', () => {
+        expect(result.classVector[0]).toEqual(0);
+        expect(result.classVector[500]).toEqual(1);
+        expect(result.classMatrix[0]).toEqual([1, 0]);
+        expect(result.classMatrix[500]).toEqual([0, 1]);
     });
 });
