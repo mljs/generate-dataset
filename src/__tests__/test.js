@@ -1,7 +1,6 @@
 var generate = require('../index');
 var options = {
-    keepDataClass: true,
-    keepCompositionMatrix: false,
+    dataClass: true,
     seed: 22,
     classes: [
         {
@@ -98,7 +97,7 @@ describe('dataset generated from a small matrix of pureElements', () => {
         expect(dataClass[500]).toEqual([1]);
     });
     it('the dataClass matrix should be a dummy matrix', () => {
-        options.dummyMatrix = true;
+        options.binaryDataClassMatrix = true;
         let classes = options.classes; //eslint-disable-line no-unused-vars
         classes = classes.map((a) => a.nbSample = 10);
         let result = generate(pureElements, options);

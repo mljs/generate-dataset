@@ -6,9 +6,8 @@ var generateDataset = require('../src/index');
  * a distribution with means 9.4 and 10.3 for the first and second classes respectivelly
  */
 var options = {
-    keepDataClass: true,
-    keepCompositionMatrix: true,
-    dummyMatrix: true,
+    dataClass: true,
+    binaryDataClassMatrix: true,
     seed: 22,
     classes: [
         {

@@ -7,9 +7,8 @@ var normalRandGenerator = require('distributions-normal-random');
  * Create a dataset by the linear combination of pure elements with a specific gaussian distribution,
  * @param {Array<Array<number>>} pureElements - matrix where each row is a pure element
  * @param {object} [options]
- * @param {boolean} [options.keepCompositionMatrix] - if it's true, the result object contain the composition matrix -compositionMatrix-
- * @param {boolean} [options.keepDataClass] - if it's true, the result object contain the dataClass matrix.
- * @param {boolean} [options.dummyMatrix] - if it's true, the dataClass matrix will be a dummyMatrix other wize it's a vector matrix.
+ * @param {boolean} [options.dataClass = true] - if it's true, the result object contain the dataClass matrix.
+ * @param {boolean} [options.binaryDataClassMatrix = false] - if it's true, the dataClass matrix will be a dummyMatrix other wize it's a vector matrix.
  * @param {number} [options.seed] - the seed to initialize the random vector.
  * @param {Array<object>} [options.classes] - the parameters to create the dataset. @example <caption> see the example </caption>.
  * @param {number} [options.classes.nbSample] - number of sample for this class.
@@ -18,11 +17,13 @@ var normalRandGenerator = require('distributions-normal-random');
  * {dataset: Array<Array<number>>, compositionMatrix: Array<Array<number>>, dataClass: Array<Array<number>>}.
  */
 function generate(pureElements, options = {}) {
-    _checkParameters(pureElements, options);
+    checkParameters(pureElements, options);
     var compositionMatrix = createCompMatrix(options);
-    var output = {dataset: compositionMatrix.mmul(pureElements)};
-    if (options.keepCompositionMatrix) output.compositionMatrix = compositionMatrix;
-    if (options.keepDataClass) output.dataClass = getDataClass(options);
+    var output = {
+        compositionMatrix,
+        dataset: compositionMatrix.mmul(pureElements)
+    };
+    if (options.dataClass) output.dataClass = getDataClass(options);
     if (options.exportAsCsv) writeFiles(output, options.pathToWrite);
     return output;
 }
@@ -30,7 +31,7 @@ function generate(pureElements, options = {}) {
 function getDataClass(options) {
     let {
         classes,
-        dummyMatrix,
+        binaryDataClassMatrix,
     } = options;
 
     var dataClass;
@@ -38,7 +39,7 @@ function getDataClass(options) {
     let nbClasses = classes.length;
     let nbSamples = classes.reduce((acc, clase) => clase.nbSample + acc, 0);
 
-    if (dummyMatrix) {
+    if (binaryDataClassMatrix) {
         dataClass = Matrix.zeros(nbSamples, nbClasses);
         for (let i = 0; i < nbClasses; i++) {
             let nbSamplesPerClass = classes[i].nbSample;
@@ -81,13 +82,11 @@ function createCompMatrix(options) {
     return new Matrix(matrixComposition);
 }
 
-function _checkParameters(pureElements, options) {
-    let {
-        classes
-    } = options;
+function checkParameters(pureElements, options) {
     if (!Array.isArray(pureElements)) throw new RangeError('pureElements should be an Array');
     if (pureElements.length < 2) throw new RangeError('pureElements array should has more than one element');
-    if (!Array.isArray(classes)) throw new RangeError('classes should be an Array');
+    if (!Array.isArray(options.classes)) throw new RangeError('classes should be an Array');
+    if (options.dataClass === undefined) options.dataClass = true;
     options.nbPureElements = pureElements.length;
 }
 
