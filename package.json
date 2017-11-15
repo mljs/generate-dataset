@@ -1,0 +1,51 @@
+{
+  "name": "generate-dataset",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "eslint": "eslint src",
+    "eslint-fix": "npm run eslint -- --fix",
+    "prepublishOnly": "rollup -c",
+    "test": "run-s testonly eslint",
+    "test-travis": "eslint src && jest --coverage && codecov",
+    "testonly": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mljs/generate-dataset.git"
+  },
+  "keywords": [],
+  "author": "Jose Alejandro Bolanos Arroyave (jobo322)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mljs/generate-dataset/issues"
+  },
+  "homepage": "https://github.com/mljs/generate-dataset#readme",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^21.0.2",
+    "babel-plugin-remove-comments": "^2.0.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-preset-babili": "^0.1.4",
+    "cheminfo-tools": "^1.19.4",
+    "codecov": "^2.3.0",
+    "eslint": "^4.6.1",
+    "eslint-config-cheminfo": "^1.8.0",
+    "eslint-plugin-no-only-tests": "^2.0.0",
+    "jest": "^21.2.1",
+    "npm-run-all": "^4.1.1",
+    "rollup": "^0.50.0"
+  },
+  "dependencies": {
+    "distributions-normal-random": "0.0.1",
+    "ml-matrix": "^5.0.1"
+  }
+}
