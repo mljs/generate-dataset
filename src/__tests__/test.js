@@ -1,3 +1,5 @@
+'use strict';
+
 var generate = require('../index');
 var options = {
     seed: 22,

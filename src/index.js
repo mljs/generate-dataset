@@ -1,3 +1,4 @@
+'use strict';
 
 var {Matrix} = require('ml-matrix');
 var normalRandGenerator = require('distributions-normal-random');
