@@ -1,5 +1,5 @@
 {
-  "name": "generate-dataset",
+  "name": "ml-generate-dataset",
   "version": "0.0.1",
   "description": "",
   "main": "src/index.js",

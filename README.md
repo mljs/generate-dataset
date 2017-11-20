@@ -1,4 +1,4 @@
-# dataSetGenerator
+# ml-generate-dataset
 
   [![NPM version][npm-image]][npm-url]
   [![build status][travis-image]][travis-url]
@@ -9,12 +9,12 @@
 
 ## Installation
 ```bash
-npm install --save generate-dataset
+npm install --save ml-generate-dataset
 ```
 
 ## Example
 ```js
-var generateDataset = require('generate-dataset');
+var generateDataset = require('ml-generate-dataset');
 /*
  * this options will be used to create the dataSet, thus permites to create several classes where markers will be
  * the elements with differents distributions between the classes, pay attention to the element with index 1, it has
@@ -124,11 +124,11 @@ var dataset = generateDataset(pureElements, options);
 ## License
   [MIT](./LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/generate-dataset.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/generate-dataset
+[npm-image]: https://img.shields.io/npm/v/ml-generate-dataset.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/ml-generate-dataset
 [travis-image]: https://img.shields.io/travis/mljs/generate-dataset/master.svg?style=flat-square
 [travis-url]: https://travis-ci.org/mljs/generate-dataset
 [codecov-image]: https://img.shields.io/codecov/c/github/mljs/generate-dataset.svg?style=flat-square
 [codecov-url]: https://codecov.io/gh/mljs/generate-dataset
-[download-image]: https://img.shields.io/npm/dm/generate-dataset.svg?style=flat-square
-[download-url]: https://www.npmjs.com/package/generate-dataset
+[download-image]: https://img.shields.io/npm/dm/ml-generate-dataset.svg?style=flat-square
+[download-url]: https://www.npmjs.com/package/ml-generate-dataset
