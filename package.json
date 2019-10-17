@@ -7,6 +7,9 @@
     "src"
   ],
   "scripts": {
+    "compile": "rollup -c",
+    "build": "cheminfo-build",
+    "prepublishOnly": "npm run compile",
     "eslint": "eslint src",
     "eslint-fix": "npm run eslint -- --fix",
     "test": "run-s testonly eslint",
@@ -28,12 +31,14 @@
     "testEnvironment": "node"
   },
   "devDependencies": {
+    "cheminfo-build": "^1.0.3",
     "codecov": "^2.3.0",
     "eslint": "^4.6.1",
     "eslint-config-cheminfo": "^1.8.0",
     "eslint-plugin-no-only-tests": "^2.0.0",
     "jest": "^21.2.1",
-    "npm-run-all": "^4.1.1"
+    "npm-run-all": "^4.1.1",
+    "rollup": "^1.23.1"
   },
   "dependencies": {
     "distributions-normal-random": "0.0.1",
