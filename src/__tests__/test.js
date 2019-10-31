@@ -94,7 +94,7 @@ describe('dataset generated from a small matrix of pureElements', () => {
     it('the classMatrix should be a binary matrix and classVector contain the same information', () => {
         expect(result.classVector[0]).toEqual(0);
         expect(result.classVector[500]).toEqual(1);
-        expect(result.classMatrix[0]).toEqual([1, 0]);
-        expect(result.classMatrix[500]).toEqual([0, 1]);
+        expect(result.classMatrix.getRow(0)).toEqual([1, 0]);
+        expect(result.classMatrix.getRow(500)).toEqual([0, 1]);
     });
 });

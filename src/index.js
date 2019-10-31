@@ -37,7 +37,7 @@ function getDataClass(options) {
     for (let i = 0; i < nbClasses; i++) {
         let nbSamplesPerClass = classes[i].nbSample;
         for (let j = 0; j < nbSamplesPerClass; j++) {
-            classMatrix[counter][i] = 1;
+            classMatrix.set(counter, i, 1);
             classVector[counter++] = i;
         }
     }
@@ -51,7 +51,6 @@ function createCompMatrix(options) {
         nbPureElements,
         seed = Date.now()
     } = options;
-
     normalRandGenerator.seed = seed;
     let matrixComposition = [];
     for (let classParameters of classes) {

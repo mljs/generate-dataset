@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "compile": "rollup -c",
-    "build": "cheminfo-build",
+    "build": "node_modules/.bin/cheminfo build --root dist",
     "prepublishOnly": "npm run compile",
     "eslint": "eslint src",
     "eslint-fix": "npm run eslint -- --fix",
@@ -42,6 +42,6 @@
   },
   "dependencies": {
     "distributions-normal-random": "0.0.1",
-    "ml-matrix": "^5.0.1"
+    "ml-matrix": "^6.4.1"
   }
 }
