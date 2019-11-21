@@ -7,7 +7,7 @@ var options = {
     classes: [
         {
             nbSpectra: 500,
-            units: [
+            unitParameters: [
                 {
                     index: 0,
                     distribution: {
@@ -42,7 +42,7 @@ var options = {
         },
         {
             nbSpectra: 500,
-            units: [
+            unitParameters: [
                 {
                     index: 0,
                     distribution: {

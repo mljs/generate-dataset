@@ -56,7 +56,7 @@ function createCompMatrix(options) {
     for (let classParameters of classes) {
         for (let i = 0; i < classParameters.nbSpectra; i++) {
             let arrayComposition = new Array(nbPureElements).fill(0);
-            for (let element of classParameters.units) {
+            for (let element of classParameters.unitParameters) {
                 let mean = element.distribution.parameters.mean;
                 let std = element.distribution.parameters.standardDeviation;
                 arrayComposition[element.index] = normalRandGenerator() * std + mean;
