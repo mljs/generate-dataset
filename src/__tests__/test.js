@@ -1,12 +1,13 @@
 'use strict';
 
 var generate = require('../index');
+
 var options = {
     seed: 22,
     classes: [
         {
-            nbSample: 500,
-            elements: [
+            nbSpectra: 500,
+            unitParameters: [
                 {
                     index: 0,
                     distribution: {
@@ -40,8 +41,8 @@ var options = {
             ]
         },
         {
-            nbSample: 500,
-            elements: [
+            nbSpectra: 500,
+            unitParameters: [
                 {
                     index: 0,
                     distribution: {
