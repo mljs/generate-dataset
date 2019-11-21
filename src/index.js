@@ -9,7 +9,7 @@ var normalRandGenerator = require('distributions-normal-random');
  * @param {object} [options]
  * @param {number} [options.seed] - the seed to initialize the random vector.
  * @param {Array<object>} [options.classes] - the parameters to create the dataset. @example <caption> see the example </caption>.
- * @param {number} [options.classes.nbSample] - number of sample for this class.
+ * @param {number} [options.classes.nbSpectra] - number of sample for this class.
  * @param {Array<object>} [options.classes.elements] - contain the object with the index of pure element and the distribution parameters,@example <caption> see the example </caption>.
  * @return {object} - object with one or three properties depending on the options
  * {dataset: Array<Array<number>>, compositionMatrix: Array<Array<number>>, dataClass: Array<Array<number>>}.
@@ -30,12 +30,12 @@ function getDataClass(options) {
     let counter = 0;
     let classes = options.classes;
     let nbClasses = classes.length;
-    let nbSamples = classes.reduce((acc, clase) => clase.nbSample + acc, 0);
+    let nbSamples = classes.reduce((acc, clase) => clase.nbSpectra + acc, 0);
 
     let classVector = new Array(nbSamples);
     let classMatrix = Matrix.zeros(nbSamples, nbClasses);
     for (let i = 0; i < nbClasses; i++) {
-        let nbSamplesPerClass = classes[i].nbSample;
+        let nbSamplesPerClass = classes[i].nbSpectra;
         for (let j = 0; j < nbSamplesPerClass; j++) {
             classMatrix.set(counter, i, 1);
             classVector[counter++] = i;
@@ -54,9 +54,9 @@ function createCompMatrix(options) {
     normalRandGenerator.seed = seed;
     let matrixComposition = [];
     for (let classParameters of classes) {
-        for (let i = 0; i < classParameters.nbSample; i++) {
+        for (let i = 0; i < classParameters.nbSpectra; i++) {
             let arrayComposition = new Array(nbPureElements).fill(0);
-            for (let element of classParameters.elements) {
+            for (let element of classParameters.units) {
                 let mean = element.distribution.parameters.mean;
                 let std = element.distribution.parameters.standardDeviation;
                 arrayComposition[element.index] = normalRandGenerator() * std + mean;
