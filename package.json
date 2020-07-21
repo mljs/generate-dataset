@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "cheminfo-build": "^1.0.3",
-    "codecov": "^2.3.0",
+    "codecov": "^3.7.1",
     "eslint": "^4.6.1",
     "eslint-config-cheminfo": "^1.8.0",
     "eslint-plugin-import": "^2.18.2",
