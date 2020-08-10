@@ -59,7 +59,7 @@ function createCompMatrix(options) {
             for (let element of classParameters.unitParameters) {
                 let mean = element.distribution.parameters.mean;
                 let std = element.distribution.parameters.standardDeviation;
-                arrayComposition[element.index] = normalRandGenerator() * std + mean;
+                arrayComposition[element.index] = ensureNonNegativeComposition(mean, std);
             }
             matrixComposition.push(arrayComposition);
         }
@@ -72,6 +72,17 @@ function checkParameters(pureElements, options) {
     if (pureElements.length < 2) throw new RangeError('pureElements array should has more than one element');
     if (!Array.isArray(options.classes)) throw new RangeError('classes should be an Array');
     options.nbPureElements = pureElements.length;
+}
+
+function ensureNonNegativeComposition(mean, std) {
+    if (mean < 0) throw new Error('mean is negative');
+    let composition;
+    let isNegative = true;
+    while(isNegative) {
+        composition = normalRandGenerator() * std + mean;
+        if (composition >= 0) isNegative = false;
+    }
+    return composition;
 }
 
 module.exports = generate;
