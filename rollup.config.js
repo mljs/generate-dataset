@@ -5,4 +5,3 @@ export default {
       file: 'lib/index.js'
     }
   };
-  

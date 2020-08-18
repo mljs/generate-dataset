@@ -12,8 +12,8 @@
     "prepublishOnly": "npm run compile",
     "eslint": "eslint src",
     "eslint-fix": "npm run eslint -- --fix",
-    "test": "run-s testonly eslint",
-    "test-travis": "eslint src && jest --coverage && codecov",
+    "test": "npm run testonly && npm run eslint",
+    "test-coverage": "jest --coverage",
     "testonly": "jest"
   },
   "repository": {
@@ -32,15 +32,16 @@
   },
   "devDependencies": {
     "cheminfo-build": "^1.0.3",
-    "codecov": "^2.3.0",
-    "eslint": "^4.6.1",
-    "eslint-config-cheminfo": "^1.8.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-no-only-tests": "^2.0.0",
-    "eslint-plugin-jest": "23.0.2",
-    "jest": "^21.2.1",
-    "npm-run-all": "^4.1.1",
-    "rollup": "^1.23.1"
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
+    "@types/jest": "^26.0.9",
+    "eslint": "^7.6.0",
+    "eslint-config-cheminfo": "^5.0.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^26.3.0",
+    "prettier": "^2.0.5",
+    "rollup": "^2.23.1"
   },
   "dependencies": {
     "distributions-normal-random": "0.0.1",
