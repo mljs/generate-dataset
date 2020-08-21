@@ -109,12 +109,15 @@ function getMinMaxIndexRT(classes) {
     let unitParameters = classParameters.unitParameters;
     for (let j = 0; j < unitParameters.length; j++) {
       let element = unitParameters[j].distribution.parameters;
-      if (max < element.mean) {
-        max = element.mean;
+      let valueMax = element.standardDeviation * 3;
+      let valueMin = element.mean - valueMax;
+      valueMax += element.mean;
+      if (max < valueMax) {
+        max = valueMax;
         maxIndexs = [i, j];
       }
-      if (min > element.mean) {
-        min = element.mean;
+      if (min > valueMin) {
+        min = valueMin;
         minIndexs = [i, j];
       }
     }
@@ -130,8 +133,8 @@ function getTimes(classes) {
   let toElement =
     classes[maxIndexs[0]].unitParameters[maxIndexs[1]].distribution.parameters;
 
-  let from = fromElement.mean - fromElement.standardDeviation * 5;
-  let to = toElement.mean + toElement.standardDeviation * 5;
+  let from = fromElement.mean - fromElement.standardDeviation * 3;
+  let to = toElement.mean + toElement.standardDeviation * 3;
 
   let nbPoints = classes.reduce((a, b) => a + b.nbSpectra, 0);
   let jump = (to - from) / (nbPoints - 1);
